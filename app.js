@@ -41,3 +41,8 @@ const PORT = process.env.PORT || 3000;
 https.createServer(sslOptions, app).listen(PORT, () => {
   console.log(`HTTPS Server running on https://localhost:${PORT}`);
 });
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
